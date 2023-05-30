@@ -12,7 +12,7 @@ dotenv_1.default.config();
 (0, validEnv_1.default)();
 const app = (0, express_1.default)();
 const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3333;
-app.use((0, logger_1.default)('completo'));
+app.use((0, logger_1.default)('completo')); // usa o middleware logger com o tipo completo para todas as rotas
 app.get('/', (req, res) => {
     res.send('Hello world!');
 });

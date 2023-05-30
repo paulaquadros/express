@@ -9,7 +9,7 @@ validateEnv();
 const app = express();
 const PORT = process.env.PORT ?? 3333;
 
-app.use(logger('completo'));
+app.use(logger('completo')); // usa o middleware logger com o tipo completo para todas as rotas
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello world!');
