@@ -12,7 +12,11 @@ const app = express();
 const PORT = process.env.PORT ?? 3333;
 const publicPath = `${process.cwd()}/public`;
 
-app.engine('handlebars', engine());
+app.engine(
+  'handlebars',
+  engine({ helpers: require(`${__dirname}/views/helpers/helpers.ts`) }),
+);
+
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views`);
 

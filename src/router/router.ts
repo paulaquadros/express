@@ -38,4 +38,17 @@ router.get('/hb3', (req, res) => {
   });
 });
 
+router.get('/hb4', (req, res) => {
+  const profes = [
+    { nome: 'David Fernandes', sala: 1238 },
+    { nome: 'Horácio Fernandes', sala: 1233 },
+    { nome: 'Edleno Moura', sala: 1236 },
+    { nome: 'Elaine Harada', sala: 1231 },
+  ];
+  res.render('hb4', {
+    profes,
+    layout: false,
+  });
+});
+
 export default router;
