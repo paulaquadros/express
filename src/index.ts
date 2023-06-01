@@ -1,15 +1,34 @@
 import express, { Request, Response } from 'express';
+import router from './router/router';
 import dotenv from 'dotenv';
 import validateEnv from './utils/validEnv';
 import logger from './middlewares/logger';
+import { engine } from 'express-handlebars';
 
 dotenv.config();
 validateEnv();
 
 const app = express();
 const PORT = process.env.PORT ?? 3333;
+const publicPath = `${process.cwd()}/public`;
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', `${__dirname}/views`);
 
 app.use(logger('completo')); // usa o middleware logger com o tipo completo para todas as rotas
+
+app.use('/css', express.static(`${publicPath}/css`));
+app.use('/js', express.static(`${publicPath}/js`));
+
+app.use((req: Request, res: Response, next) => {
+  console.log('oi');
+  next();
+});
+
+app.get('/page', (req: Request, res: Response) => {
+  res.sendFile(`${publicPath}/html/index.html`);
+});
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello world!');
@@ -17,4 +36,19 @@ app.get('/', (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`Express app iniciada na porta ${PORT}.`);
+});
+
+app.get('/', (req, res) => {
+  res.end('Bem-vindo ao meu site!');
+});
+
+app.get('/sobre', (req, res) => {
+  res.end('Bem-vindo à página sobre!');
+});
+
+app.use(router);
+
+app.use((req, res) => {
+  res.statusCode = 404;
+  res.end('404!');
 });
