@@ -17,6 +17,8 @@ app.engine(
   engine({ helpers: require(`${__dirname}/views/helpers/helpers.ts`) }),
 );
 
+app.use(express.json());
+
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views`);
 
