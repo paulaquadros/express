@@ -1,48 +1,48 @@
 import { Request, Response } from 'express';
 
-class MainController {
-  private generateLoremIpsum(paragraphs: number) {
-    const words = [
-      // Palavras aleatórias para gerar o texto :D
-      'Lorem',
-      'ipsum',
-      'dolor',
-      'sit',
-      'amet',
-      'consectetur',
-      'adipiscing',
-      'elit',
-      'sed',
-      'do',
-      'eiusmod',
-      'tempor',
-      'incididunt',
-      'ut',
-      'labore',
-      'et',
-      'dolore',
-      'magna',
-      'aliqua',
-    ];
+function generateLoremIpsum(paragraphs: number) {
+  const words = [
+    // Palavras aleatórias para gerar o texto :D
+    'Lorem',
+    'ipsum',
+    'dolor',
+    'sit',
+    'amet',
+    'consectetur',
+    'adipiscing',
+    'elit',
+    'sed',
+    'do',
+    'eiusmod',
+    'tempor',
+    'incididunt',
+    'ut',
+    'labore',
+    'et',
+    'dolore',
+    'magna',
+    'aliqua',
+  ];
 
-    const loremIpsumParagraphs = [];
+  const loremIpsumParagraphs = [];
 
-    for (let i = 0; i < paragraphs; i++) {
-      const paragraphLength = Math.floor(Math.random() * 20) + 3; // Gera parágrafos com 3 a 22 palavras aleatórias
-      const paragraphWords = []; // Array para armazenar as palavras do parágrafo
+  for (let i = 0; i < paragraphs; i++) {
+    const paragraphLength = Math.floor(Math.random() * 20) + 3; // Gera parágrafos com 3 a 22 palavras aleatórias
+    const paragraphWords = []; // Array para armazenar as palavras do parágrafo
 
-      for (let j = 0; j < paragraphLength; j++) {
-        const randomIndex = Math.floor(Math.random() * words.length); // Obtendo palavra aleatória
-        paragraphWords.push(words[randomIndex]); // Adicionando a palavra ao parágrafo
-      }
-
-      const loremIpsumParagraph = paragraphWords.join(' ');
-      loremIpsumParagraphs.push(loremIpsumParagraph); // Adicionando o parágrafo ao array de parágrafos
+    for (let j = 0; j < paragraphLength; j++) {
+      const randomIndex = Math.floor(Math.random() * words.length); // Obtendo palavra aleatória
+      paragraphWords.push(words[randomIndex]); // Adicionando a palavra ao parágrafo
     }
 
-    return loremIpsumParagraphs;
+    const loremIpsumParagraph = paragraphWords.join(' ');
+    loremIpsumParagraphs.push(loremIpsumParagraph); // Adicionando o parágrafo ao array de parágrafos
   }
 
+  return loremIpsumParagraphs;
+}
+
+class MainController {
   lorem(req: Request, res: Response) {
     type RequestQueries = {
       amount?: string;
@@ -58,7 +58,7 @@ class MainController {
       });
     }
 
-    const paragraphs = this.generateLoremIpsum(amount);
+    const paragraphs = generateLoremIpsum(amount);
 
     res.json({ paragraphs });
   }
