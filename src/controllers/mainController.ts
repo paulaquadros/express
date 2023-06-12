@@ -80,7 +80,7 @@ class MainController {
     ];
     res.render('hb1', {
       profes,
-      layout: false,
+      layout: 'layout',
     });
   }
 
@@ -89,14 +89,14 @@ class MainController {
       poweredByNodejs: true,
       name: 'Express',
       type: 'Framework',
-      layout: false,
+      layout: 'layout',
     });
   }
 
   hb3(req: Request, res: Response) {
     res.render('hb3', {
       mensagem: 'Olá, você está aprendendo Express + HBS!',
-      layout: false,
+      layout: 'layout',
     });
   }
 
@@ -109,7 +109,7 @@ class MainController {
     ];
     res.render('hb4', {
       profes,
-      layout: false,
+      layout: 'layout',
     });
   }
 
@@ -125,7 +125,7 @@ class MainController {
     ];
     res.render('hb5', {
       technologies,
-      layout: false,
+      layout: 'layout',
     });
   }
 }
