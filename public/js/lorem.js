@@ -16,23 +16,23 @@ loremForm.addEventListener('submit', (e) => {
   history.pushState({}, 'Lorem Ipsum', `?amount=${amount}`);
 
   fetch(`/lorem?amount=${amount}`)
-  .then((res) => {
-    return res.json()
-  })
-  .then((data) => {
-    const paragraphs = data.paragraphs;
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      const paragraphs = data.paragraphs;
 
-    for (const paragraph of paragraphs) {
-      const element = document.createElement('p');
+      for (const paragraph of paragraphs) {
+        const element = document.createElement('p');
 
-      const textNode = document.createTextNode(paragraph);
-      
-      element.appendChild(textNode);
+        const textNode = document.createTextNode(paragraph);
 
-      resultContainer.appendChild(element);
-    }
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+        element.appendChild(textNode);
+
+        resultContainer.appendChild(element);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
