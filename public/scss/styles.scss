@@ -1,21 +1,5 @@
 $color: #4D926F;
-#header {
-    color: black;
-    .navigation {
-    font-size: 12px;
-    }
-    .logo {
-    width: 300px;
-    }
-   }
-@mixin borda($wth) {
-    border-top: dotted $wth black;
-    border-bottom: solid $wth black;
-   }
-   #menu a {
-    color: #111;
-    @include borda(2px);
-   }
-   .post a {
-    @include borda(1px);
+
+h1 {
+    color: $color;
 }

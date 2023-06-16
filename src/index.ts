@@ -25,15 +25,15 @@ app.set('views', `${__dirname}/views`);
 
 app.use(logger('completo')); // usa o middleware logger com o tipo completo para todas as rotas
 
-app.use('/css', express.static(`${publicPath}/css`));
+// app.use('/css', express.static(`${publicPath}/css`));
 app.use('/js', express.static(`${publicPath}/js`));
 
 app.use('/img', [express.static(`${__dirname}/public/img`)]);
 
 app.use(
   sass({
-    src: `${__dirname}/../public/scss`,
-    dest: `${__dirname}/../public/css`,
+    src: `${publicPath}/scss`,
+    dest: `${publicPath}/css`,
     outputStyle: 'compressed',
     prefix: '/css',
   }),

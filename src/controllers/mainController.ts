@@ -95,7 +95,7 @@ class MainController {
 
   hb3(req: Request, res: Response) {
     res.render('hb3', {
-      mensagem: 'Olá, você está aprendendo Express + HBS!',
+      mensagem: 'Universidade Federal do Amazonas',
       layout: 'layout',
     });
   }
