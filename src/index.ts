@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import validateEnv from './utils/validEnv';
 import logger from './middlewares/logger';
 import { engine } from 'express-handlebars';
+import sass from 'node-sass-middleware';
 
 dotenv.config();
 validateEnv();
@@ -26,6 +27,18 @@ app.use(logger('completo')); // usa o middleware logger com o tipo completo para
 
 app.use('/css', express.static(`${publicPath}/css`));
 app.use('/js', express.static(`${publicPath}/js`));
+
+app.use('/img', [express.static(`${__dirname}/public/img`)]);
+
+app.use(
+  sass({
+    src: `${__dirname}/../public/scss`,
+    dest: `${__dirname}/../public/css`,
+    outputStyle: 'compressed',
+    prefix: '/css',
+  }),
+);
+app.use('/css', express.static(`${__dirname}/../public/css`));
 
 app.use((req: Request, res: Response, next) => {
   console.log('oi');
