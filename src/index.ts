@@ -31,6 +31,13 @@ app.use('/js', express.static(`${publicPath}/js`));
 app.use('/img', [express.static(`${__dirname}/public/img`)]);
 
 app.use(
+  '/webfonts',
+  express.static(
+    `${__dirname}/../node_modules/@fortawesome/fontawesome-free/webfonts`,
+  ),
+);
+
+app.use(
   sass({
     src: `${publicPath}/scss`,
     dest: `${publicPath}/css`,
