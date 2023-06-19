@@ -37,6 +37,11 @@ app.use(
   ),
 );
 
+app.use('/js', [
+  express.static(`${publicPath}/js`),
+  express.static(`${__dirname}/../node_modules/bootstrap/dist/js/`),
+]);
+
 app.use(
   sass({
     src: `${publicPath}/scss`,
@@ -45,6 +50,7 @@ app.use(
     prefix: '/css',
   }),
 );
+
 app.use('/css', express.static(`${__dirname}/../public/css`));
 
 app.use((req: Request, res: Response, next) => {
